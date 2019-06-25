@@ -1,0 +1,25 @@
+{
+  "name": "news-app-api",
+  "version": "1.0.0",
+  "description": "API for news-app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renhongl/news-app-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renhongl/news-app-api/issues"
+  },
+  "homepage": "https://github.com/renhongl/news-app-api#readme",
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-route": "^3.2.0",
+    "koa-static": "^5.0.0"
+  }
+}
