@@ -2,20 +2,24 @@
 const gulp = require('gulp');
 const nodemon = require('gulp-nodemon');
 const notifier = require('node-notifier');
+const { series } = gulp;
 
-
-gulp.task('start', function (done) {
+const notify = function(cb) {
     notifier.notify(
         {
             title: 'Server Action',
-            message: 'Starting Server...'
+            message: 'Restarting Server...'
         }
     );
-    nodemon({
+    cb();
+}
+
+const serve = function(cb) {
+    return nodemon({
         script: './src/index.js',
         ext: 'js',
         env: { 'NODE_ENV': 'development' },
-        done: done
+        done: cb
     }).on('restart', function () {
         notifier.notify(
             {
@@ -24,4 +28,6 @@ gulp.task('start', function (done) {
             }
         );
     });
-});
+}
+
+exports.serve = series(notify, serve);

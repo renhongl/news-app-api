@@ -6,7 +6,7 @@ const commonSettings = (ctx) => {
 
 const getUser = async (ctx, next) => {
   commonSettings(ctx);
-  ctx.response.body = {"name": "Sun Wu Kong", "age": 100};
+  ctx.response.body = {"name": "Sun Wu Kong", "age": 1000};
 }
 
 const createUser = (ctx, next) => {
