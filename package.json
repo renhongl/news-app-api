@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/index.js"
+    "start": "node ./src/index.js",
+    "serve": "gulp start"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,16 @@
   "homepage": "https://github.com/renhongl/news-app-api#readme",
   "dependencies": {
     "koa": "^2.7.0",
+    "koa-mongo": "^1.8.1",
     "koa-route": "^3.2.0",
     "koa-static": "^5.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.2.0",
+    "gulp-nodemon": "^2.4.2",
+    "gulp-notify": "^3.2.0",
+    "gulp-run-command": "0.0.9",
+    "node-notifier": "^5.4.0"
   }
 }
