@@ -32,7 +32,10 @@ const updateUser = async (ctx, next) => {
     let currUser = await User.findOne({ username });
     if (currUser) {
       let newUser = request.body;
-      let res = await User.updateOne({ username }, newUser, { upsert: true });
+      if (newUser.password) {
+        delete newUser.password;
+      }
+      let res = await User.updateOne({ username }, newUser, { omitUndefined: true });
       if (res.ok) {
         ctx.body = newUser;
       }
