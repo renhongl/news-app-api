@@ -4,12 +4,13 @@ const jsonwebtoken = require('jsonwebtoken');
 const { SECRET } = require('../settings/constants');
 
 const register = async ctx => {
-  const { body } = ctx.request;
   try {
+    const { body } = ctx.request;
     if (!body.username || !body.password) {
       ctx.status = 400;
       ctx.body = {
-        error: `expected an object with username, password but got: ${body}`,
+        code: 400,
+        message: `Bad request`,
       };
       return;
     }
@@ -22,57 +23,59 @@ const register = async ctx => {
       user = await newUser.save();
       ctx.status = 200;
       ctx.body = {
+        code: 200,
         message: 'Success',
-        user,
+        data: user
       };
     } else {
       ctx.status = 406;
       ctx.body = {
+        code: 406,
         message: 'User name existed',
       };
     }
   } catch (error) {
     console.log(error);
-    ctx.throw(500);
+    ctx.status = 500;
   }
 };
 
 const login = async ctx => {
-  const { body } = ctx.request;
   try {
+    const { body } = ctx.request;
     const user = await User.findOne({ username: body.username });
     if (!user) {
       ctx.status = 401;
       ctx.body = {
+        code: 401,
         message: 'User name error',
       };
       return;
     }
-    // 匹配密码是否相等
     if (await bcrypt.compare(body.password, user.password)) {
       ctx.status = 200;
       ctx.body = {
-        message: 'Login Successfully',
-        user: user.userInfo,
-        // 生成 token 返回给客户端
-        token: jsonwebtoken.sign(
-          {
+        code: 200,
+        message: 'Login successfully',
+        data: {
+          token: jsonwebtoken.sign({
             data: user,
-            // 设置 token 过期时间
             exp: Math.floor(Date.now() / 1000) + 60 * 60, // 60 seconds * 60 minutes = 1 hour
           },
-          SECRET,
-        ),
+            SECRET,
+          ),
+        }
       };
     } else {
       ctx.status = 401;
       ctx.body = {
+        code: 401,
         message: 'Password error',
       };
     }
   } catch (error) {
     console.log(error);
-    ctx.throw(500);
+    ctx.status = 500;
   }
 };
 

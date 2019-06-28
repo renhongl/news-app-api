@@ -11,6 +11,7 @@ const nodemon = require('gulp-nodemon');
 const notifier = require('node-notifier');
 const { series, parallel } = gulp;
 const prettier = require('@bdchauvette/gulp-prettier');
+const { exec } = require('child_process');
 
 const notify = function(cb) {
     notifier.notify(
@@ -48,7 +49,8 @@ const serve = function(cb) {
                 message: 'Restarting Server...'
             }
         );
+        exec('swagger-jsdoc -d ./swaggerDef.js -o ./static/doc/api.json');
     });
 }
 
-exports.serve = series(notify, parallel(serve));
+exports.serve = series(notify, serve);
