@@ -65,4 +65,6 @@ app.use(
 );
 
 app.listen(3000);
-console.log('Server Running: 3000');
+console.log('Server Running: http://localhost:3000');
+console.log('Swagger Running: http://localhost:3000/doc');
+
