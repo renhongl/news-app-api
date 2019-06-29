@@ -16,6 +16,28 @@ module.exports = {
     security: [{
         Bearer: []
     }],
-    
+    definitions: {
+        loginSchema: {
+            type: 'object',
+            properties: {
+                username: {
+                    type: 'string',
+                    example: 'lrh'
+                },
+                password: {
+                    type: 'string',
+                    example: '112233'
+                }
+            }
+        },
+        apiResponse: {
+            type: 'object',
+            properties: {
+                code: {
+                    type: 'integer'
+                }
+            }
+        }
+    },
     apis: ['./src/api/*.js'],
 };

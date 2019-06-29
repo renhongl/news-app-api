@@ -55,22 +55,16 @@ const register = async ctx => {
  *        content:
  *          application/json:
  *            schema:
- *              type: object
- *              required:
- *              - username
- *              - password
- *              properties:
- *                username:
- *                  type: string
- *                  example: lrh
- *                password:
- *                  type: string
- *                  example: '112233'
+ *              $ref: "#/definitions/loginSchema"
  *      responses:
  *        401:
  *           description: Invalid token 
  *        200:
  *          description: Success
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: "#/definitions/apiResponse"
  *         
  */
 const login = async ctx => {

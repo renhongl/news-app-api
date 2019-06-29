@@ -18,6 +18,29 @@
       "Bearer": []
     }
   ],
+  "definitions": {
+    "loginSchema": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "lrh"
+        },
+        "password": {
+          "type": "string",
+          "example": "112233"
+        }
+      }
+    },
+    "apiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer"
+        }
+      }
+    }
+  },
   "paths": {
     "/login": {
       "post": {
@@ -33,28 +56,21 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "username",
-                  "password"
-                ],
-                "properties": {
-                  "username": {
-                    "type": "string",
-                    "example": "lrh"
-                  },
-                  "password": {
-                    "type": "string",
-                    "example": "112233"
-                  }
-                }
+                "$ref": "#/definitions/loginSchema"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/apiResponse"
+                }
+              }
+            }
           },
           "401": {
             "description": "Invalid token"
