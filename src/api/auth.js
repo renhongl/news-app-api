@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken');
 const { SECRET } = require('../settings/constants');
 
+
 const register = async ctx => {
   try {
     const { body } = ctx.request;
@@ -40,6 +41,38 @@ const register = async ctx => {
   }
 };
 
+/**
+ * @swagger
+ * /login:
+ *    post:
+ *      tags:
+ *        - Auth
+ *      description: Login to auth user
+ *      produces:
+ *        - application/json
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              required:
+ *              - username
+ *              - password
+ *              properties:
+ *                username:
+ *                  type: string
+ *                  example: lrh
+ *                password:
+ *                  type: string
+ *                  example: '112233'
+ *      responses:
+ *        401:
+ *           description: Invalid token 
+ *        200:
+ *          description: Success
+ *         
+ */
 const login = async ctx => {
   try {
     const { body } = ctx.request;

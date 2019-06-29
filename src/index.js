@@ -21,8 +21,6 @@ const koaSwagger = require('koa2-swagger-ui');
 const app = new Koa();
 const router = new Router();
 
-
-
 connectDB('mongodb://localhost/news');
 
 app.use(errorHandle);
@@ -41,15 +39,12 @@ app.use(
   }),
 );
 
-
 router
   .post('/register', register)
   .post('/login', login)
   .get('/user/:username', getUser)
   .put('/user/:username', updateUser)
   .post('/file/:type', fileUpload);
-
-
 
 app
   .use(router.routes())

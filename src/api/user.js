@@ -8,7 +8,9 @@ const User = require('../models/user');
  * @swagger
  * /user/{username}:
  *    get:
- *      description: description
+ *      tags:
+ *        - User
+ *      description: Query user information by username
  *      produces:
  *        - application/json
  *      parameters:
@@ -18,28 +20,11 @@ const User = require('../models/user');
  *          required: true
  *          schema:
  *             type: string
- *        - name: token
- *          in: header
- *          description: Token for call api
- *          required: true
- *          schema:
- *             type: string
  *      responses:
  *        401:
  *           description: Invalid token 
  *        200:
- *          description: OK
- *          content:
- *            application/json:
- *              schema:
- *                type: object
- *                properties:
- *                  code:
- *                    type: integer
- *                  message:
- *                    type: string
- *                  data:
- *                    type: object
+ *          description: Success
  *         
  */
 const getUser = async (ctx, next) => {

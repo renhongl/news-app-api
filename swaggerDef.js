@@ -1,17 +1,21 @@
 module.exports = {
     openapi: '3.0.0', // Specification (optional, defaults to swagger: '2.0')
     info: {
-        title: 'Hello World', // Title (required)
+        title: 'News APP API', // Title (required)
         version: '1.0.0', // Version (required)
     },
-    securityDefinitions: {
-        auth: {
-            type: 'basic'
+    components: {
+        securitySchemes: {
+            Bearer: {
+                type: 'apiKey',
+                name: 'token',
+                in: 'header'
+            }
         }
     },
-    security: [
-        { token: [] }
-    ],
-    // Path to the API docs
-    apis: ['./src/api/user.js'],
+    security: [{
+        Bearer: []
+    }],
+    
+    apis: ['./src/api/*.js'],
 };
