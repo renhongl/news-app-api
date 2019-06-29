@@ -36,12 +36,98 @@
       "type": "object",
       "properties": {
         "code": {
-          "type": "integer"
+          "type": "integer",
+          "example": 200
+        },
+        "message": {
+          "type": "string",
+          "example": "Success"
+        },
+        "data": {
+          "type": "object"
+        }
+      }
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "lrh"
+        },
+        "avator": {
+          "type": "string",
+          "example": "/avator/avator.png"
+        },
+        "intro": {
+          "type": "string",
+          "example": "Today is a good day"
+        },
+        "gender": {
+          "type": "string",
+          "example": "male"
+        },
+        "birthday": {
+          "type": "integer",
+          "example": 12144534
+        },
+        "place": {
+          "type": "string",
+          "example": "SingaporeA/ng Mo Kio"
+        },
+        "news": {
+          "type": "integer",
+          "example": 32
+        },
+        "follower": {
+          "type": "integer",
+          "example": 65
+        },
+        "followee": {
+          "type": "integer",
+          "example": 92
+        },
+        "love": {
+          "type": "integer",
+          "example": 23
         }
       }
     }
   },
   "paths": {
+    "/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "Register a new user",
+        "produces": [
+          "application/json"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#definitions/loginSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#definitions/apiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/login": {
       "post": {
         "tags": [
@@ -78,6 +164,52 @@
         }
       }
     },
+    "/file/{type}": {
+      "post": {
+        "tags": [
+          "File"
+        ],
+        "description": "Upload file to server",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "description": "File type for upload",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "avator or common"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Invalid token"
+          }
+        }
+      }
+    },
     "/user/{username}": {
       "get": {
         "tags": [
@@ -90,8 +222,8 @@
         "parameters": [
           {
             "name": "username",
+            "description": "User Name",
             "in": "path",
-            "description": "User name",
             "required": true,
             "schema": {
               "type": "string"
@@ -101,6 +233,51 @@
         "responses": {
           "200": {
             "description": "Success"
+          },
+          "401": {
+            "description": "Invalid token"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "Update user information",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "description": "User name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#definitions/user"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#definitions/apiResponse"
+                }
+              }
+            }
           },
           "401": {
             "description": "Invalid token"

@@ -3,7 +3,29 @@ const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken');
 const { SECRET } = require('../settings/constants');
 
-
+/**
+ * @swagger
+ * /register:
+ *  post:
+ *    tags:
+ *      - Auth
+ *    description: Register a new user
+ *    produces:
+ *      - application/json
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: "#definitions/loginSchema"
+ *    responses:
+ *      200:
+ *        description: Success
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: "#definitions/apiResponse"
+ */
 const register = async ctx => {
   try {
     const { body } = ctx.request;
@@ -47,7 +69,7 @@ const register = async ctx => {
  *    post:
  *      tags:
  *        - Auth
- *      description: Login to auth user
+ *      description: Login to auth user 
  *      produces:
  *        - application/json
  *      requestBody:

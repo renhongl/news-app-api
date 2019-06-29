@@ -15,8 +15,8 @@ const User = require('../models/user');
  *        - application/json
  *      parameters:
  *        - name: username
+ *          description: User Name
  *          in: path
- *          description: User name
  *          required: true
  *          schema:
  *             type: string
@@ -52,7 +52,39 @@ const getUser = async (ctx, next) => {
 };
 
 
-
+/**
+ * @swagger
+ * /user/{username}:
+ *  put:
+ *    tags:
+ *      - User
+ *    description: Update user information
+ *    produces:
+ *      - application/json
+ *    parameters:
+ *       - name: username
+ *         description: User name
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: "#definitions/user"
+ *    responses:
+ *      401:
+ *        description: Invalid token
+ *      200:
+ *        description: Success
+ *        content:
+ *            application/json:
+ *              schema:
+ *                $ref: "#definitions/apiResponse"
+ *        
+ */
 const updateUser = async (ctx, next) => {
   try {
     const request = ctx.request;
@@ -68,6 +100,7 @@ const updateUser = async (ctx, next) => {
       if (res.ok) {
         ctx.body = {
           code: 200,
+          message: 'Success',
           data: newUser
         };
       }
