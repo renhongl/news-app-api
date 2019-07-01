@@ -90,6 +90,23 @@ module.exports = {
                     example: 23
                 }
             }
+        },
+        news: {
+            type: 'object',
+            properties: {
+                author: {
+                    type: 'string',
+                    example: 'lrh'
+                },
+                title: {
+                    type: 'string',
+                    example: 'Good Weather Today'
+                },
+                content: {
+                    type: 'string',
+                    example: 'Today is a good day with runshine'
+                }
+            }
         }
     },
     apis: ['./src/api/*.js'],

@@ -92,6 +92,23 @@
           "example": 23
         }
       }
+    },
+    "news": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "string",
+          "example": "lrh"
+        },
+        "title": {
+          "type": "string",
+          "example": "Good Weather Today"
+        },
+        "content": {
+          "type": "string",
+          "example": "Today is a good day with runshine"
+        }
+      }
     }
   },
   "paths": {
@@ -210,19 +227,106 @@
         }
       }
     },
-    "/user/{username}": {
+    "/news/{id}": {
       "get": {
         "tags": [
-          "User"
+          "News"
         ],
-        "description": "Query user information by username",
+        "description": "Get news information by id",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "username",
-            "description": "User Name",
+            "name": "id",
+            "in": "path",
+            "description": "News id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/news/author/{author}": {
+      "get": {
+        "tags": [
+          "News"
+        ],
+        "description": "Get news list for author",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "author",
+            "description": "Author of news",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/news": {
+      "post": {
+        "tags": [
+          "News"
+        ],
+        "description": "Create new news",
+        "produces": [
+          "application/json"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#definitions/news"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#definitions/apiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Query user information by id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "User ID",
             "in": "path",
             "required": true,
             "schema": {
@@ -249,8 +353,8 @@
         ],
         "parameters": [
           {
-            "name": "username",
-            "description": "User name",
+            "name": "id",
+            "description": "User ID",
             "in": "path",
             "required": true,
             "schema": {

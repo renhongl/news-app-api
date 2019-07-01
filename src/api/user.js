@@ -1,21 +1,20 @@
 
 
 const User = require('../models/user');
-
-
+const Mongoose = require('mongoose');
 
 /**
  * @swagger
- * /user/{username}:
+ * /user/{id}:
  *    get:
  *      tags:
  *        - User
- *      description: Query user information by username
+ *      description: Query user information by id
  *      produces:
  *        - application/json
  *      parameters:
- *        - name: username
- *          description: User Name
+ *        - name: id
+ *          description: User ID
  *          in: path
  *          required: true
  *          schema:
@@ -29,8 +28,8 @@ const User = require('../models/user');
  */
 const getUser = async (ctx, next) => {
   try {
-    const username = ctx.params.username;
-    let user = await User.findOne({ username: username });
+    const id = ctx.params.id;
+    let user = await User.findOne(new Mongoose.Types.ObjectId(id));
     ctx.status = 200;
     if (user) {
       ctx.body = {
@@ -41,7 +40,7 @@ const getUser = async (ctx, next) => {
     } else {
       ctx.body = {
         code: 200,
-        message: `No user named: ${username}`,
+        message: `No user id: ${id}`,
         data: null
       };
     }
@@ -54,7 +53,7 @@ const getUser = async (ctx, next) => {
 
 /**
  * @swagger
- * /user/{username}:
+ * /user/{id}:
  *  put:
  *    tags:
  *      - User
@@ -62,8 +61,8 @@ const getUser = async (ctx, next) => {
  *    produces:
  *      - application/json
  *    parameters:
- *       - name: username
- *         description: User name
+ *       - name: id
+ *         description: User ID
  *         in: path
  *         required: true
  *         schema:
@@ -89,14 +88,14 @@ const updateUser = async (ctx, next) => {
   try {
     const request = ctx.request;
     ctx.status = 200;
-    const username = ctx.params.username;
-    let currUser = await User.findOne({ username });
+    const id = ctx.params.id;
+    let currUser = await User.findOne(new Mongoose.Types.ObjectId(id));
     if (currUser) {
       let newUser = request.body;
       if (newUser.password) {
         delete newUser.password;
       }
-      let res = await User.updateOne({ username }, newUser, { omitUndefined: true });
+      let res = await User.updateOne({ id }, newUser, { omitUndefined: true });
       if (res.ok) {
         ctx.body = {
           code: 200,
@@ -107,7 +106,7 @@ const updateUser = async (ctx, next) => {
     } else {
       ctx.body = {
         code: 200,
-        message: `No user named: ${username} to be update`,
+        message: `No user id ${id} to be update`,
         data: null
       };
     }
