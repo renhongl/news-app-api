@@ -7,7 +7,7 @@ const cryptoRandomString = require('crypto-random-string');
  *  post:
  *      tags:
  *          - File
- *      description: Upload file to server
+ *      summary: Upload file to server
  *      produces:
  *          - application/json
  *      parameters:

@@ -3,16 +3,16 @@ const Mongoose = require('mongoose');
 
 /**
  * @swagger
- * /user/{id}:
+ * /user/{username}:
  *    get:
  *      tags:
  *        - User
- *      description: Query user information by id
+ *      summary: Query user information by username
  *      produces:
  *        - application/json
  *      parameters:
- *        - name: id
- *          description: User ID
+ *        - name: username
+ *          description: User name
  *          in: path
  *          required: true
  *          schema:
@@ -26,8 +26,8 @@ const Mongoose = require('mongoose');
  */
 const getUser = async (ctx, next) => {
   try {
-    const id = ctx.params.id;
-    let user = await User.findOne(new Mongoose.Types.ObjectId(id));
+    const username = ctx.params.username;
+    let user = await User.findOne({username}, { _id: 0, password: 0});
     ctx.status = 200;
     if (user) {
       ctx.body = {
@@ -38,7 +38,7 @@ const getUser = async (ctx, next) => {
     } else {
       ctx.body = {
         code: 200,
-        message: `No user id: ${id}`,
+        message: `No user name: ${username}`,
         data: null,
       };
     }
@@ -54,7 +54,7 @@ const getUser = async (ctx, next) => {
  *  put:
  *    tags:
  *      - User
- *    description: Update user information
+ *    summary: Update user information
  *    produces:
  *      - application/json
  *    parameters:

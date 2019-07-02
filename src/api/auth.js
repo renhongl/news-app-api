@@ -9,7 +9,7 @@ const { SECRET } = require('../settings/constants');
  *  post:
  *    tags:
  *      - Auth
- *    description: Register a new user
+ *    summary: Register a new user
  *    produces:
  *      - application/json
  *    requestBody:
@@ -69,7 +69,7 @@ const register = async ctx => {
  *    post:
  *      tags:
  *        - Auth
- *      description: Login to auth user ooo
+ *      summary: Login by username and password
  *      produces:
  *        - application/json
  *      requestBody:
@@ -114,6 +114,7 @@ const login = async ctx => {
             },
             SECRET,
           ),
+          user,
         },
       };
     } else {

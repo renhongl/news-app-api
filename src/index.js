@@ -62,7 +62,7 @@ app.use(
 router
   .post('/register', register)
   .post('/login', login)
-  .get('/user/:id', getUser)
+  .get('/user/:username', getUser)
   .put('/user/:id', updateUser)
   .post('/file/:type', fileUpload)
   .get('/news/:id', getNewsById)

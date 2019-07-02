@@ -117,7 +117,7 @@
         "tags": [
           "Auth"
         ],
-        "description": "Register a new user",
+        "summary": "Register a new user",
         "produces": [
           "application/json"
         ],
@@ -150,7 +150,7 @@
         "tags": [
           "Auth"
         ],
-        "description": "Login to auth user ooo",
+        "summary": "Login by username and password",
         "produces": [
           "application/json"
         ],
@@ -186,7 +186,7 @@
         "tags": [
           "File"
         ],
-        "description": "Upload file to server",
+        "summary": "Upload file to server",
         "produces": [
           "application/json"
         ],
@@ -232,7 +232,7 @@
         "tags": [
           "News"
         ],
-        "description": "Get news information by id",
+        "summary": "Get news information by ID",
         "produces": [
           "application/json"
         ],
@@ -257,7 +257,7 @@
         "tags": [
           "News"
         ],
-        "description": "Delete news by Id",
+        "summary": "Delete news by ID",
         "produces": [
           "application/json"
         ],
@@ -284,7 +284,7 @@
         "tags": [
           "News"
         ],
-        "description": "Get news list for author",
+        "summary": "Get news list by author",
         "produces": [
           "application/json"
         ],
@@ -311,7 +311,7 @@
         "tags": [
           "News"
         ],
-        "description": "Get latest news by total numbers",
+        "summary": "Get latest news with total numbers",
         "produces": [
           "application/json"
         ],
@@ -338,7 +338,7 @@
         "tags": [
           "News"
         ],
-        "description": "Create new news",
+        "summary": "Create new news",
         "produces": [
           "application/json"
         ],
@@ -366,19 +366,19 @@
         }
       }
     },
-    "/user/{id}": {
+    "/user/{username}": {
       "get": {
         "tags": [
           "User"
         ],
-        "description": "Query user information by id",
+        "summary": "Query user information by username",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "id",
-            "description": "User ID",
+            "name": "username",
+            "description": "User name",
             "in": "path",
             "required": true,
             "schema": {
@@ -394,12 +394,14 @@
             "description": "Invalid token"
           }
         }
-      },
+      }
+    },
+    "/user/{id}": {
       "put": {
         "tags": [
           "User"
         ],
-        "description": "Update user information",
+        "summary": "Update user information",
         "produces": [
           "application/json"
         ],

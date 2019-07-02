@@ -7,7 +7,7 @@ const News = require('../models/news');
  *    get:
  *      tags:
  *          - News
- *      description: Get news information by id
+ *      summary: Get news information by ID
  *      produces:
  *          - application/json
  *      parameters:
@@ -58,7 +58,7 @@ const getNewsById = async ctx => {
  *   get:
  *      tags:
  *          - News
- *      description: Get news list for author
+ *      summary: Get news list by author
  *      produces:
  *          - application/json
  *      parameters:
@@ -104,7 +104,7 @@ const getNewsByAuthor = async ctx => {
  *   get:
  *     tags:
  *       - News
- *     description: Get latest news by total numbers
+ *     summary: Get latest news with total numbers
  *     produces:
  *       - application/json
  *     parameters:
@@ -142,7 +142,7 @@ const getLatestNewsList = async ctx => {
  *  post:
  *      tags:
  *          - News
- *      description: Create new news
+ *      summary: Create new news
  *      produces:
  *          - application/json
  *      requestBody:
@@ -211,7 +211,7 @@ const createNews = async ctx => {
  *   delete:
  *     tags:
  *       - News
- *     description: Delete news by Id
+ *     summary: Delete news by ID
  *     produces:
  *       - application/json
  *     parameters:
