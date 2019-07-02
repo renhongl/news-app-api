@@ -12,7 +12,7 @@ const userSchema = new Schema({
   news: Number,
   follower: Number,
   followee: Number,
-  love: Number
+  love: Number,
 });
 
 const User = Mongoose.model('User', userSchema);

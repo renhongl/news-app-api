@@ -1,5 +1,3 @@
-
-
 const User = require('../models/user');
 const Mongoose = require('mongoose');
 
@@ -21,10 +19,10 @@ const Mongoose = require('mongoose');
  *             type: string
  *      responses:
  *        401:
- *           description: Invalid token 
+ *           description: Invalid token
  *        200:
  *          description: Success
- *         
+ *
  */
 const getUser = async (ctx, next) => {
   try {
@@ -35,13 +33,13 @@ const getUser = async (ctx, next) => {
       ctx.body = {
         code: 200,
         message: 'Success',
-        data: user
+        data: user,
       };
     } else {
       ctx.body = {
         code: 200,
         message: `No user id: ${id}`,
-        data: null
+        data: null,
       };
     }
   } catch (error) {
@@ -49,7 +47,6 @@ const getUser = async (ctx, next) => {
     ctx.throw(500);
   }
 };
-
 
 /**
  * @swagger
@@ -82,7 +79,7 @@ const getUser = async (ctx, next) => {
  *            application/json:
  *              schema:
  *                $ref: "#definitions/apiResponse"
- *        
+ *
  */
 const updateUser = async (ctx, next) => {
   try {
@@ -100,14 +97,14 @@ const updateUser = async (ctx, next) => {
         ctx.body = {
           code: 200,
           message: 'Success',
-          data: newUser
+          data: newUser,
         };
       }
     } else {
       ctx.body = {
         code: 200,
         message: `No user id ${id} to be update`,
-        data: null
+        data: null,
       };
     }
   } catch (error) {
@@ -115,7 +112,6 @@ const updateUser = async (ctx, next) => {
     ctx.throw(500);
   }
 };
-
 
 module.exports = {
   getUser,

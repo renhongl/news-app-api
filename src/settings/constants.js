@@ -1,5 +1,3 @@
-
-
 module.exports = {
   // Secret for create token
   SECRET: 'NEWS_SECRET',

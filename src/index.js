@@ -10,11 +10,24 @@ const koaBody = require('koa-body');
 const { getUser, updateUser } = require('./api/user');
 const { register, login } = require('./api/auth');
 const { errorHandle, connectDB } = require('./common/utils');
-const { SECRET, DB_URL, STATIC_PATH, TOKEN_KEY, SWAGGER_DOC_JSON, PORT } = require('./settings/constants');
+const {
+  SECRET,
+  DB_URL,
+  STATIC_PATH,
+  TOKEN_KEY,
+  SWAGGER_DOC_JSON,
+  PORT,
+} = require('./settings/constants');
 const { fileUpload } = require('./api/file');
 const serve = require('koa-static');
 const koaSwagger = require('koa2-swagger-ui');
-const { getNewsById, getNewsByAuthor, getLatestNewsList, createNews, deleteNews } = require('./api/news');
+const {
+  getNewsById,
+  getNewsByAuthor,
+  getLatestNewsList,
+  createNews,
+  deleteNews,
+} = require('./api/news');
 
 // Create app and router instance
 const app = new Koa();
@@ -36,7 +49,7 @@ app.use(serve(STATIC_PATH));
 app.use(
   jwt({
     secret: SECRET,
-    extractToken: (ctx) => {
+    extractToken: ctx => {
       return ctx.header.token;
     },
     key: TOKEN_KEY,
@@ -56,12 +69,10 @@ router
   .get('/news/author/:author', getNewsByAuthor)
   .get('/news/latest/:nums', getLatestNewsList)
   .post('/news', createNews)
-  .delete('/news/:id', deleteNews)
+  .delete('/news/:id', deleteNews);
 
 // Apply route middleware
-app
-  .use(router.routes())
-  .use(router.allowedMethods());
+app.use(router.routes()).use(router.allowedMethods());
 
 // Apply swagger middleware
 app.use(
@@ -79,4 +90,3 @@ app.listen(PORT);
 // Print log on console
 console.log('Server Running: http://localhost:' + PORT);
 console.log('Swagger Running: http://localhost:' + 3000 + '/doc');
-

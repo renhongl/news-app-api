@@ -6,7 +6,7 @@ const errorHandle = (ctx, next) => {
       ctx.status = 400;
       ctx.body = {
         code: 400,
-        message: 'Bad Request'
+        message: 'Bad Request',
       };
       return;
     }
@@ -14,7 +14,7 @@ const errorHandle = (ctx, next) => {
       ctx.status = 401;
       ctx.body = {
         code: 401,
-        message: 'Invalid Token'
+        message: 'Invalid Token',
       };
       return;
     }
@@ -22,7 +22,7 @@ const errorHandle = (ctx, next) => {
       ctx.status = 406;
       ctx.body = {
         code: 406,
-        message: 'User name existed'
+        message: 'User name existed',
       };
       return;
     }
@@ -30,7 +30,7 @@ const errorHandle = (ctx, next) => {
       ctx.status = 500;
       ctx.body = {
         code: 500,
-        message: 'Server error'
+        message: 'Server error',
       };
       return;
     }
@@ -46,7 +46,6 @@ const connectDB = url => {
     return mongodb;
   });
 };
-
 
 module.exports = {
   errorHandle,

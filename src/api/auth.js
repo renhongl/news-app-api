@@ -48,7 +48,7 @@ const register = async ctx => {
       ctx.body = {
         code: 200,
         message: 'Success',
-        data: user
+        data: user,
       };
     } else {
       ctx.status = 406;
@@ -69,7 +69,7 @@ const register = async ctx => {
  *    post:
  *      tags:
  *        - Auth
- *      description: Login to auth user 
+ *      description: Login to auth user ooo
  *      produces:
  *        - application/json
  *      requestBody:
@@ -80,14 +80,14 @@ const register = async ctx => {
  *              $ref: "#/definitions/loginSchema"
  *      responses:
  *        401:
- *           description: Invalid token 
+ *           description: Invalid token
  *        200:
  *          description: Success
  *          content:
  *            application/json:
  *              schema:
  *                $ref: "#/definitions/apiResponse"
- *         
+ *
  */
 const login = async ctx => {
   try {
@@ -107,13 +107,14 @@ const login = async ctx => {
         code: 200,
         message: 'Login successfully',
         data: {
-          token: jsonwebtoken.sign({
-            data: user,
-            exp: Math.floor(Date.now() / 1000) + 60 * 60, // 60 seconds * 60 minutes = 1 hour
-          },
+          token: jsonwebtoken.sign(
+            {
+              data: user,
+              exp: Math.floor(Date.now() / 1000) + 60 * 60, // 60 seconds * 60 minutes = 1 hour
+            },
             SECRET,
           ),
-        }
+        },
       };
     } else {
       ctx.status = 401;
