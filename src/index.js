@@ -29,7 +29,7 @@ const {
   createNews,
   deleteNews,
 } = require('./controller/news');
-
+const cors = require('@koa/cors');
 
 // Create app and router instance
 const app = new Koa();
@@ -37,6 +37,8 @@ const router = new Router();
 
 // Connecting db
 connectDB(DB_URL);
+
+app.use(cors());
 
 // Handle common error
 app.use(errorHandle);
@@ -56,7 +58,7 @@ app.use(
     },
     key: TOKEN_KEY,
   }).unless({
-    path: [/\/register/, /\/login/, /\/doc/, /\/mail/],
+    path: [/\/register/, /\/login/, /\/doc/, /\/mail/, /\/news/],
   }),
 );
 

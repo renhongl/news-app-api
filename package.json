@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/renhongl/news-app-api#readme",
   "dependencies": {
+    "@koa/cors": "^2.2.3",
     "bcrypt": "^3.0.6",
     "crypto-random-string": "^3.0.1",
     "gulp-open": "^3.0.1",
