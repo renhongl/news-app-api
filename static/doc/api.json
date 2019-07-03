@@ -19,6 +19,19 @@
     }
   ],
   "definitions": {
+    "mailSchema": {
+      "type": "object",
+      "properties": {
+        "mail": {
+          "type": "string",
+          "example": "1075220132@qq.com"
+        },
+        "username": {
+          "type": "string",
+          "example": "lrh"
+        }
+      }
+    },
     "loginSchema": {
       "type": "object",
       "properties": {
@@ -29,6 +42,27 @@
         "password": {
           "type": "string",
           "example": "112233"
+        }
+      }
+    },
+    "registerSchema": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "lrh"
+        },
+        "password": {
+          "type": "string",
+          "example": "112233"
+        },
+        "mail": {
+          "type": "string",
+          "example": "1075220132@qq.com"
+        },
+        "code": {
+          "type": "string",
+          "example": "542324"
         }
       }
     },
@@ -112,6 +146,32 @@
     }
   },
   "paths": {
+    "/register/mail": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Send a verify mail for register",
+        "produces": [
+          "application/json"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#definitions/mailSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/register": {
       "post": {
         "tags": [
@@ -126,7 +186,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#definitions/loginSchema"
+                "$ref": "#definitions/registerSchema"
               }
             }
           }

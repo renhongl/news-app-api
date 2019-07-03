@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="login_container"></div>
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+    <script>
+        var obj = new WxLogin({
+            id: "login_container", // 需要显示的容器id
+            appid: "wx8d49256e9037423a",  // 公众号appid wx*******
+            scope: "snsapi_login",  // 网页默认即可
+            redirect_uri: "http:localhost:3000/user", // 授权成功后回调的url
+            state: "", // 可设置为简单的随机数加session用来校验
+            style: "black", // 提供"black"、"white"可选。二维码的样式
+            href: "" // 外部css文件url，需要https
+        });
+    </script>
+</body>
+
+</html>

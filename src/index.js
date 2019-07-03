@@ -7,9 +7,10 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const jwt = require('koa-jsonwebtoken').default;
 const koaBody = require('koa-body');
-const { getUser, updateUser } = require('./api/user');
-const { register, login } = require('./api/auth');
-const { errorHandle, connectDB } = require('./common/utils');
+const { getUser, updateUser } = require('./controller/user');
+const { register, login, verifyMail } = require('./controller/auth');
+const { connectDB } = require('./common/db');
+const { errorHandle } = require('./common/errorHandle');
 const {
   SECRET,
   DB_URL,
@@ -18,7 +19,7 @@ const {
   SWAGGER_DOC_JSON,
   PORT,
 } = require('./settings/constants');
-const { fileUpload } = require('./api/file');
+const { fileUpload } = require('./controller/file');
 const serve = require('koa-static');
 const koaSwagger = require('koa2-swagger-ui');
 const {
@@ -27,7 +28,8 @@ const {
   getLatestNewsList,
   createNews,
   deleteNews,
-} = require('./api/news');
+} = require('./controller/news');
+
 
 // Create app and router instance
 const app = new Koa();
@@ -54,13 +56,14 @@ app.use(
     },
     key: TOKEN_KEY,
   }).unless({
-    path: [/\/register/, /\/login/, /\/doc/],
+    path: [/\/register/, /\/login/, /\/doc/, /\/mail/],
   }),
 );
 
 // Router definition
 router
   .post('/register', register)
+  .post('/register/mail/', verifyMail)
   .post('/login', login)
   .get('/user/:username', getUser)
   .put('/user/:id', updateUser)
@@ -70,6 +73,8 @@ router
   .get('/news/latest/:nums', getLatestNewsList)
   .post('/news', createNews)
   .delete('/news/:id', deleteNews);
+  
+
 
 // Apply route middleware
 app.use(router.routes()).use(router.allowedMethods());

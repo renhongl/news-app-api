@@ -17,6 +17,19 @@ module.exports = {
         Bearer: []
     }],
     definitions: {
+        mailSchema: {
+            type: 'object',
+            properties: {
+                mail: {
+                    type: 'string',
+                    example: '1075220132@qq.com'
+                },
+                username: {
+                    type: 'string',
+                    example: 'lrh'
+                }
+            }
+        },
         loginSchema: {
             type: 'object',
             properties: {
@@ -27,6 +40,27 @@ module.exports = {
                 password: {
                     type: 'string',
                     example: '112233'
+                }
+            }
+        },
+        registerSchema: {
+            type: 'object',
+            properties: {
+                username: {
+                    type: 'string',
+                    example: 'lrh'
+                },
+                password: {
+                    type: 'string',
+                    example: '112233'
+                },
+                mail: {
+                    type: 'string',
+                    example: '1075220132@qq.com'
+                },
+                code: {
+                    type: 'string',
+                    example: "542324"
                 }
             }
         },
@@ -109,5 +143,5 @@ module.exports = {
             }
         }
     },
-    apis: ['./src/api/*.js'],
+    apis: ['./src/controller/*.js'],
 };

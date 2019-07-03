@@ -11,4 +11,8 @@ module.exports = {
   SWAGGER_DOC_JSON: '/doc/api.json',
   // Server port
   PORT: 3000,
+  // Pass for send email
+  PASS: 'lrh0000',
+  // Offical email from Ai Kan
+  SERVER_MAIL: 'liang_renhong@163.com'
 };
