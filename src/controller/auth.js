@@ -48,6 +48,7 @@ const verifyMail = async = (ctx) => {
     }
     const code = generateCode(6);
     store.setItem(body.mail, code);
+    console.log(code);
     setTimeout(() => {
       store.setItem(body.mail, null);
     }, 1000 * 60 * 30);

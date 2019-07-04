@@ -151,6 +151,14 @@ module.exports = {
                 previewImg: {
                     type: 'string',
                     example: '/news/pre.png'
+                },
+                images: {
+                    type: 'array',
+                    example: ['/news/pre1.png', '/news/pre2.png']
+                },
+                type: {
+                    type: 'string',
+                    example: 'internal'
                 }
             }
         }

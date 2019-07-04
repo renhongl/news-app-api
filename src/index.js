@@ -72,7 +72,7 @@ router
   .post('/file/:type', fileUpload)
   .get('/news/:id', getNewsById)
   .get('/news/author/:author', getNewsByAuthor)
-  .get('/news/latest/:nums', getLatestNewsList)
+  .get('/news/latest/:type', getLatestNewsList)
   .post('/news', createNews)
   .delete('/news/:id', deleteNews);
   

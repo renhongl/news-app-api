@@ -100,16 +100,16 @@ const getNewsByAuthor = async ctx => {
 
 /**
  * @swagger
- * /news/latest/{nums}:
+ * /news/latest/{type}:
  *   get:
  *     tags:
  *       - News
- *     summary: Get latest news with total numbers
+ *     summary: Get latest news with type
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: nums
- *         description: Numbers for want to get
+ *       - name: type
+ *         description: New type for want to get
  *         in: path
  *         required: true
  *         schema:
@@ -120,10 +120,11 @@ const getNewsByAuthor = async ctx => {
  */
 const getLatestNewsList = async ctx => {
   try {
-    let nums = ctx.params.nums || 50;
+    let type = ctx.params.type;
+    console.log(type);
     let now = new Date();
     now.setHours(now.getHours() - 5)
-    let result = await News.find({dateTime: {$gte: now.getTime()}}).sort({dateTime: -1}).limit(Number(nums));
+    let result = await News.find({type: type, dateTime: {$gte: now.getTime()}}).sort({dateTime: -1}).limit(20);
     ctx.status = 200;
     ctx.body = {
       code: 200,

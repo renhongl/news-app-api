@@ -153,6 +153,17 @@
         "previewImg": {
           "type": "string",
           "example": "/news/pre.png"
+        },
+        "images": {
+          "type": "array",
+          "example": [
+            "/news/pre1.png",
+            "/news/pre2.png"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "example": "internal"
         }
       }
     }
@@ -378,19 +389,19 @@
         }
       }
     },
-    "/news/latest/{nums}": {
+    "/news/latest/{type}": {
       "get": {
         "tags": [
           "News"
         ],
-        "summary": "Get latest news with total numbers",
+        "summary": "Get latest news with type",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "nums",
-            "description": "Numbers for want to get",
+            "name": "type",
+            "description": "New type for want to get",
             "in": "path",
             "required": true,
             "schema": {

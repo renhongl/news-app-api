@@ -19,7 +19,9 @@ const newsSchema = new Schema({
     type: String,
     required: true,
   },
-  previewImg: String
+  previewImg: String,
+  images: Array,
+  type: String
 });
 
 const News = Mongoose.model('News', newsSchema);
