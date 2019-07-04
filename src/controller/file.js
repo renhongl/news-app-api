@@ -46,6 +46,7 @@ const fileUpload = async ctx => {
     reader.pipe(upstream);
     ctx.status = 200;
     ctx.body = {
+      code: 200,
       message: 'Upload successfully',
       imagePath,
       type,
