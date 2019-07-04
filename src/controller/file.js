@@ -41,13 +41,13 @@ const fileUpload = async ctx => {
     const filename = cryptoRandomString({ length: 10, type: 'url-safe' });
     const nameArr = file.name.split(/\./);
     const suffix = nameArr[nameArr.length - 1];
-    const imageName = `file-${filename}.${suffix}`;
-    let upstream = fs.createWriteStream(`./static/${type}/${imageName}`);
+    const imagePath = `${type}/file-${filename}.${suffix}`;
+    let upstream = fs.createWriteStream(`./static/${imagePath}`);
     reader.pipe(upstream);
     ctx.status = 200;
     ctx.body = {
       message: 'Upload successfully',
-      imageName,
+      imagePath,
       type,
     };
   } catch (error) {

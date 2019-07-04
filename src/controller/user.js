@@ -92,8 +92,13 @@ const updateUser = async (ctx, next) => {
       if (newUser.password) {
         delete newUser.password;
       }
-      let res = await User.updateOne({ id }, newUser, { omitUndefined: true });
+      if (newUser.username) {
+        delete newUser.username;
+      }
+      let res = await User.findByIdAndUpdate(new Mongoose.Types.ObjectId(id), newUser);
+      console.log(res);
       if (res.ok) {
+        ctx.status = 200;
         ctx.body = {
           code: 200,
           message: 'Success',

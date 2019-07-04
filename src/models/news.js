@@ -14,12 +14,12 @@ const newsSchema = new Schema({
     type: Number,
     required: true,
   },
-  subTitle: String,
-  topic: Array,
+  comment: Number,
   content: {
     type: String,
     required: true,
   },
+  previewImg: String
 });
 
 const News = Mongoose.model('News', newsSchema);

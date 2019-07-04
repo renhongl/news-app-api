@@ -139,6 +139,18 @@ module.exports = {
                 content: {
                     type: 'string',
                     example: 'Today is a good day with runshine'
+                },
+                dateTime: {
+                    type: 'number',
+                    example: 1562210672572
+                },
+                comment: {
+                    type: 'number',
+                    example: 54
+                },
+                previewImg: {
+                    type: 'string',
+                    example: '/news/pre.png'
                 }
             }
         }
