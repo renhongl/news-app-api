@@ -83,7 +83,7 @@ const getNewsByAuthor = async ctx => {
       };
       return;
     }
-    const newsList = await News.find({ author });
+    const newsList = await News.find({ author }).sort({dateTime: -1});
     if (newsList) {
       ctx.status = 200;
       ctx.body = {
@@ -121,7 +121,6 @@ const getNewsByAuthor = async ctx => {
 const getLatestNewsList = async ctx => {
   try {
     let type = ctx.params.type;
-    console.log(type);
     let now = new Date();
     now.setHours(now.getHours() - 5)
     let result = await News.find({type: type, dateTime: {$gte: now.getTime()}}).sort({dateTime: -1}).limit(20);

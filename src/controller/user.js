@@ -95,7 +95,7 @@ const updateUser = async (ctx, next) => {
       if (newUser.username) {
         delete newUser.username;
       }
-      let res = await User.findByIdAndUpdate(new Mongoose.Types.ObjectId(id), newUser);
+      let res = await User.updateOne({_id: new Mongoose.Types.ObjectId(id)}, newUser);
       console.log(res);
       if (res.ok) {
         ctx.status = 200;
