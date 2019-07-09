@@ -35,10 +35,14 @@ const cors = require('@koa/cors');
 const app = new Koa();
 const router = new Router();
 
+const corsOptions = {
+  origin: '*'
+}
+
 // Connecting db
 connectDB(DB_URL);
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Handle common error
 app.use(errorHandle);

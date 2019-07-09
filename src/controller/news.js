@@ -237,13 +237,22 @@ const deleteNews = async ctx => {
       }
       return;
     }
-    let result = await News.findOneAndDelete(new Mongoose.Types.ObjectId(id));
-    ctx.status = 200;
-    ctx.body = {
-      code: 200,
-      message: 'Success',
-      data: result
-    };
+    let news = await News.findOne(new Mongoose.Types.ObjectId(id));
+    if (news) {
+      let result = await News.deleteOne({_id: new Mongoose.Types.ObjectId(id)});
+      ctx.status = 200;
+      ctx.body = {
+        code: 200,
+        message: 'Success',
+        data: result
+      };
+    } else {
+      ctx.status = 406;
+      ctx.body = {
+        code: 406,
+        message: `No news id: ${id}`,
+      };
+    }
   } catch (error) {
     console.log(error);
     ctx.status = 500;
