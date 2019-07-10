@@ -7,10 +7,10 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const jwt = require('koa-jsonwebtoken').default;
 const koaBody = require('koa-body');
-const { getUser, updateUser } = require('./controller/user');
-const { register, login, verifyMail } = require('./controller/auth');
-const { connectDB } = require('./common/db');
-const { errorHandle } = require('./common/errorHandle');
+const { getUser, updateUser } = require('./src/controller/user');
+const { register, login, verifyMail } = require('./src/controller/auth');
+const { connectDB } = require('./src/common/db');
+const { errorHandle } = require('./src/common/errorHandle');
 const {
   SECRET,
   DB_URL,
@@ -18,8 +18,8 @@ const {
   TOKEN_KEY,
   SWAGGER_DOC_JSON,
   PORT,
-} = require('./settings/constants');
-const { fileUpload } = require('./controller/file');
+} = require('./src/settings/constants');
+const { fileUpload } = require('./src/controller/file');
 const serve = require('koa-static');
 const koaSwagger = require('koa2-swagger-ui');
 const {
@@ -28,7 +28,7 @@ const {
   getLatestNewsList,
   createNews,
   deleteNews,
-} = require('./controller/news');
+} = require('./src/controller/news');
 const cors = require('@koa/cors');
 
 // Create app and router instance

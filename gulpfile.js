@@ -55,7 +55,7 @@ const generateSwagger = function () {
 const serve = function (cb) {
     generateSwagger();
     return nodemon({
-        script: './src/index.js',
+        script: './app.js',
         ext: 'js',
         env: { 'NODE_ENV': 'development' },
         done: cb
