@@ -32,7 +32,7 @@
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "koa2-swagger-ui": "^2.14.1",
-    "mongoose": "^5.6.1",
+    "mongoose": "^5.7.5",
     "nodemailer": "^6.2.1",
     "swagger-jsdoc": "^3.2.9",
     "web-wechat-login": "^1.0.9",
