@@ -1,3 +1,13 @@
+
+<img width="100%" src="https://renhongl.github.io/images/1.png" alt="example1"/>
+
+<!-- more -->
+
+<img width="100%" src="https://renhongl.github.io/images/2.png" alt="example1"/>
+<img width="100%" src="https://renhongl.github.io/images/3.png" alt="example1"/>
+<img width="100%" src="https://renhongl.github.io/images/4.png" alt="example1"/>
+<img width="100%" src="https://renhongl.github.io/images/5.png" alt="example1"/>
+
 # 新闻应用API
 
 
@@ -5,13 +15,6 @@
 
 是使用KOA开发的
 
-
-
-<img src="renhongl.github.io/images/1.png" alt="example1"/>
-<img src="renhongl.github.io/images/2.png" alt="example1"/>
-<img src="renhongl.github.io/images/3.png" alt="example1"/>
-<img src="renhongl.github.io/images/4.png" alt="example1"/>
-<img src="renhongl.github.io/images/5.png" alt="example1"/>
 
 
 功能文档：[前端文档](https://github.com/renhongl/news-app)
